@@ -5,7 +5,7 @@
 # Yeu cau: python3.10+, ffmpeg (brew install ffmpeg), Xcode CLT
 # Ghi chu: macOS khong co CUDA -> chi build ban CPU (Apple Silicon van nhanh)
 # ============================================================
-set -euo pipefail
+set -eo pipefail
 VERSION="1.0.0"
 
 cd "$(dirname "$0")/../.."   # -> desktop/
