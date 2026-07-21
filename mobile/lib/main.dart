@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
       } else {
         log('[2/2] ✅ Xong!');
         // Xuat file .srt canh file goc (neu co timestamps) hoac .txt
-        final srt = _toSrt(result!);
+        final srt = _toSrt(result!.transcription);
         final outPath = '${filePath!.replaceAll(RegExp(r'\.[^.]+$'), '')}.srt';
         await File(outPath).writeAsString(srt);
         log('✅ Đã lưu: $outPath');
@@ -111,8 +111,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   String _toSrt(WhisperTranscribeResponse result) {
-    final segments = result.transcription.segments;
-    if (segments == null || segments.isEmpty) return result.transcription.text;
+    final segments = result.segments;
+    if (segments == null || segments.isEmpty) return result.text;
     final buf = StringBuffer();
     for (var i = 0; i < segments.length; i++) {
       final s = segments[i];
