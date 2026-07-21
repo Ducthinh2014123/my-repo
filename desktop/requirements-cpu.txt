@@ -1,0 +1,8 @@
+# Ban CPU (nhe hon nhieu) — cai bang:
+#   pip install -r requirements-cpu.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+openai-whisper
+transformers>=4.40
+accelerate
+huggingface_hub

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=WhisperSub
+Comment=AI subtitle generator (OpenAI Whisper)
+Exec=/opt/whispersub/WhisperSub
+Icon=whispersub
+Terminal=false
+Categories=AudioVideo;Audio;Video;Utility;
