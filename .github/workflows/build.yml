@@ -84,8 +84,12 @@ jobs:
           flutter pub get
           sed -i 's/ndkVersion = .*/ndkVersion = "29.0.13113456"/' android/app/build.gradle.kts
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
-          PLUGIN_GRADLE=$(find "$HOME/.pub-cache/hosted" -path "*whisper_ggml*/android/build.gradle*" | head -1)
-          sed -i -E 's/compileSdkVersion[[:space:]]+[0-9]+/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*[0-9]+/compileSdk = 36/g' "$PLUGIN_GRADLE"
+          for f in $(find "$HOME/.pub-cache" -path "*whisper_ggml*/android/build.gradle*"); do
+            echo "== File: $f"
+            echo "-- Truoc khi va:"; grep -n "compileSdk" "$f" || true
+            sed -i -E 's/compileSdkVersion[[:space:]]+[0-9]+/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*[0-9]+/compileSdk = 36/g; s/compileSdk[[:space:]]+[0-9]+/compileSdk 36/g' "$f"
+            echo "-- Sau khi va:"; grep -n "compileSdk" "$f" || true
+          done
           flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
