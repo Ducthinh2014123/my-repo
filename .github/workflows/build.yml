@@ -5,6 +5,10 @@ on:
   push:
     tags: ["v*"]
 
+# THÊM 3 DÒNG NÀY VÀO ĐÂY ĐỂ FIX TRIỆT ĐỂ 5 LỖI:
+permissions:
+  contents: read
+
 jobs:
   # ---------------- Windows: setup.exe (CPU + GPU) ----------------
   windows:
